@@ -21,6 +21,7 @@
 	<properties>
 		<demo.port>8443</demo.port>
 		<start-class>org.kurento.tutorial.helloworld.Application</start-class>
+		<!-- 告知SpringBoot maven 主类的位置	-->
 	</properties>
 
 	<dependencies>
@@ -28,6 +29,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- 告知SpringBoot 启动web项目 -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -204,7 +204,18 @@ function uiStart()
   console.log("[start] Create WebRtcPeerSendrecv");
   uiSetState(UI_STARTING);
   showSpinner(uiLocalVideo, uiRemoteVideo);
-
+  var iceservers={
+    "iceServers":[
+        {
+          urls:"stun:49.233.5.184:3478"
+        },
+        {
+          urls:["turn:49.233.5.184:3478"],
+            username:"kurento",
+            credential: "kurento"
+        }
+    ]
+  }
   const options = {
     localVideo: uiLocalVideo,
     remoteVideo: uiRemoteVideo,
@@ -213,6 +224,7 @@ function uiStart()
       id: 'ADD_ICE_CANDIDATE',
       candidate: candidate,
     }),
+    configuration: iceservers
   };
 
   webRtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendrecv(options,

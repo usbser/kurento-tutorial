@@ -28,7 +28,7 @@ import org.springframework.web.socket.server.standard.ServletServerContainerFact
 /**
  * Kurento Java Tutorial - Application entry point.
  */
-@SpringBootApplication
+@SpringBootApplication //告诉Spring Boot根据添加的jar依赖猜测你想如何配置Spring
 @EnableWebSocket
 public class Application implements WebSocketConfigurer
 {

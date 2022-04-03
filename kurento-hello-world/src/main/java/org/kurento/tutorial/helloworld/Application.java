@@ -28,11 +28,15 @@ import org.springframework.web.socket.server.standard.ServletServerContainerFact
 /**
  * Kurento Java Tutorial - Application entry point.
  */
+//页面客户端通过WebSocket发送的信令消息会被应用程序服务端的Application类处理
+// 同时，他还需要创建一个和Kurento Media Server进行WebSocket通信的客户端
+//当页面客户端通过websocket发送过来信令后，会在HelloWorldHandler类的 handlerTextMessage方法中进行分别处理:
 @SpringBootApplication //告诉Spring Boot根据添加的jar依赖猜测你想如何配置Spring
 @EnableWebSocket
 public class Application implements WebSocketConfigurer
 {
-  @Bean
+  //页面客户端通过WebSocket发送的信令消息会被应用程序服务端的Handler类处理
+  @Bean//实现了TextWebSocketHandler来处理文本WebSocket的请求，它就是WebSocket的服务端
   public Handler handler()
   {
     return new Handler();
@@ -51,7 +55,7 @@ public class Application implements WebSocketConfigurer
     return container;
   }
 
-  @Override
+  @Override//注册函数 注册了一个 WebSocketHandler
   public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
   {
     registry.addHandler(handler(), "/helloworld");

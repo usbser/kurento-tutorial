@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//WebSocket客户端的路径设置
+//对路径”/helloworld”通信的WebSocket:
 const ws = new WebSocket('wss://' + location.host + '/helloworld');
 
 let webRtcPeer;
@@ -91,7 +92,7 @@ function sendMessage(message)
 /* ============================= */
 /* ==== WebSocket signaling ==== */
 /* ============================= */
-
+//WebSocket的监听函数onmessage() 用来处理从WebSocket服务端发送到客户端的JSON信令消息。
 ws.onmessage = function(message)
 {
   const jsonMessage = JSON.parse(message.data);
@@ -157,7 +158,7 @@ function handleAddIceCandidate(jsonMessage)
 }
 
 // STOP ------------------------------------------------------------------------
-
+//用户点击页面stop按键后，将会调用src/main/resources/static/js/index.js中的stop()函数
 function stop()
 {
   if (uiState == UI_IDLE) {
@@ -198,7 +199,7 @@ function handleError(jsonMessage)
 /* ==================== */
 
 // Start -----------------------------------------------------------------------
-
+//当点击页面的start按键后，将调用src/main/resources/static/js/index.js的start()函数，开始WebRTC通信:
 function uiStart()
 {
   console.log("[start] Create WebRtcPeerSendrecv");
@@ -226,7 +227,12 @@ function uiStart()
     }),
     configuration: iceservers
   };
-
+  //js/kurento-utils.js定义的函数，它抽象了WebRTC的内部细节
+  //使用HTML视频标签 videoInput ---- 显示视频摄像头(本地流)和视频标签videoOupup----
+  //显示远端由Kurento Media Server提供的流，来启动一个全双工的WebRTC通信。
+  //在这个函数中，将会调用generateOffer()函数。
+  //这个函数(指generateOffer())会根据参数offeSDP生成客户端SDP请求，然后调用函数onOffer()。
+  //在onOffer()函数中，会通过WebSocket把SDP和id信息发送到WebSocket信令服务端；
   webRtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendrecv(options,
       function(err)
   {

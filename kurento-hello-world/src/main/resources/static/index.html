@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+<!--在 src/main/resources/static/js/index.js中被使用-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="cache-control" content="no-cache">
@@ -10,6 +10,7 @@
   <link rel="shortcut icon" href="/img/kurento.png" type="image/png">
 
   <!-- WebJars -->
+  <!--kurento-util依赖的库adapter.js, 它是谷歌开发JavaScript WebRTC库，它抽象并封装了各个浏览器间的差异，能方便页面程序开发人员的开发-->
   <link rel="stylesheet" href="/webjars/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/webjars/demo-console/index.css">
   <link rel="stylesheet" href="/webjars/ekko-lightbox/dist/ekko-lightbox.min.css">
@@ -20,6 +21,7 @@
   <script src="/webjars/webrtc-adapter/release/adapter.js"></script>
 
   <!-- Kurento -->
+  <!--Kurento JavaScript 库，叫做 kurento-util.js, 来简化和服务端的WebRTC交互。-->
   <link rel="stylesheet" href="/css/kurento.css">
   <script src="/js/kurento-utils.min.js"></script> <!-- JAR from Maven -->
   <script src="/js/index.js"></script>

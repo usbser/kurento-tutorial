@@ -299,6 +299,7 @@ public class Handler extends TextWebSocketHandler
     });
 
     // Event: The ICE backend finished gathering ICE candidates
+    //监听当ICE收集处理已完成的事件。
     webRtcEp.addIceGatheringDoneListener(
         new EventListener<IceGatheringDoneEvent>() {
       @Override
@@ -384,10 +385,10 @@ public class Handler extends TextWebSocketHandler
     // ---- Media pipeline
 
     log.info("[Handler::handleStart] Create Media Pipeline");
-
+    //使用KurentoClient对象kurento创建一个MediaPipeline对象，通过它，我们可以再创建我们想要的媒体元件并连接。
     final MediaPipeline pipeline = kurento.createMediaPipeline();
     user.setMediaPipeline(pipeline);
-
+    //创建了一个WebRtcEndpoint媒体元件实例来接收WebRTC流并把它原样发回给客户端。
     final WebRtcEndpoint webRtcEp =
         new WebRtcEndpoint.Builder(pipeline).build();
     user.setWebRtcEndpoint(webRtcEp);

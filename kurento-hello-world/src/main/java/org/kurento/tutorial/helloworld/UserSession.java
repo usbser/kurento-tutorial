@@ -22,6 +22,8 @@ import org.kurento.client.WebRtcEndpoint;
 /**
  * Kurento Java Tutorial - Per-user session state.
  */
+//为了释放向kurento Media Server请求的资源，我们需要把用户session
+// (例如MediaPipeline和WebRtcEndpoint)存储起来，以在用户调用stop时释放掉。
 public class UserSession
 {
   private MediaPipeline mediaPipeline;
